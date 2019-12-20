@@ -49,7 +49,7 @@ Closure describes how a function will look outside the scope chain and search fo
 
 5. Why do we need super() in an extended class?
 
-The "super()" binds the classes together and calls the parent constructor and its arguements.
+The "super()" binds the classes together, calls the parent constructor and its arguments.
 
 ## Project Set up
 
