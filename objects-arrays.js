@@ -6,7 +6,7 @@
   object name, diet, weight, length, period
 */
 
-var Rex = {
+var Tyrannosaurus = {
     name: 'tyrannosaurus',
     diet: 'carnivorous',
     weight: '7000Kg',
@@ -17,7 +17,7 @@ var Rex = {
     } 
 }
 
-var Steg = {
+var Stegosaurus = {
     name: 'stegosaurus',
     diet: 'herbivorous',
     weight: '2000Kg',
@@ -25,7 +25,7 @@ var Steg = {
     peroid: 'Late Jurassic',  
 }
 
-var Velocio = {
+var Velociraptor = {
     name: 'velociraptor',
     diet: 'carnivorous',
     weight: '15kg',
@@ -42,13 +42,13 @@ var Velocio = {
 // Using your dinosaur objects, log answers to these questions:
 
 // How much did tyrannosaurus weigh?
-console.log(Rex.weight);
+console.log(Tyrannosaurus.weight);
 
 // What was the diet of a velociraptor?
-console.log(Velocio.diet);
+console.log(Velocioraptor.diet);
 
 // How long was a stegosaurus?
-console.log(Steg.length);
+console.log(Stegosaurus.length);
 
 // What time period did tyrannosaurus live in?
 console.log(Rex.period);
@@ -76,10 +76,9 @@ const graduates = [
 /* Request 1: Create a new array called universities that contains all the universities in the graduates array. This will be an array of strings.
 
 Once you have the new array created, sort the universities alphabetically and log the result. */
-const universities = ["Coastal Carolina University", "Fanchhochschule Rosenheim, Hochschule für Technik und Wirtschaft",
-"International Medical & Technological University", "Marian College", "Missouri Southern State College", "Salem University",
-"Sultan Salahuddin Abdul Aziz Shah Polytechnic","The School of the Art Institute of Chicago", "Universidad Católica de Ávila", 
-"Universitat Rovira I Virgili Tarragona"];
+
+var universities = [];
+universities.sort((a, b) => (a.university < b.university) ? universities.push(graduates[a].university): -1);
 console.log(universities);
 
 /* Request 2: Create a new array called contactInfo that contains both first name and email of each student. This will be an array of strings.
@@ -88,17 +87,20 @@ The resulting contact information strings should have a space between the first 
 "Josh josh@example.com"
 
 Log the result of your new array. */
-const contactInfo = ["Cynde ctorry0@macromedia.com", "Saundra swhal1@state.gov", "Lambert lparham2@techcrunch.com",
-"Modestine mdolder3@symantec.com", "Chick camorts4@google.com.au", "Jakob jharken5@spiegel.de", "Robbi rbrister6@redcross.org",
-"Colline cbrosh7@alibaba.com", "Michail mrome8@shinystat.com", "Hube hlethbrig9@foxnews.com"];
+
+var contactInfo = [];
+contactInfo.push(graduates[index].first_name, graduates[index].email);
 console.log(contactInfo);
 
-/* Request 3: Find out how many universities have the string "Uni" included in their name. Create a new array called unisWithUni that contains them all. This will be an array of objects. Log the result. */
-var unisWithUni = [
-    {university: "Universidad Católica de Ávila"},
-    {university: "Universitat Rovira I Virgili Tarragona"},
-];
+/*const contactInfo = ["Cynde ctorry0@macromedia.com", "Saundra swhal1@state.gov", "Lambert lparham2@techcrunch.com",
+"Modestine mdolder3@symantec.com", "Chick camorts4@google.com.au", "Jakob jharken5@spiegel.de", "Robbi rbrister6@redcross.org",
+"Colline cbrosh7@alibaba.com", "Michail mrome8@shinystat.com", "Hube hlethbrig9@foxnews.com"];
+console.log(contactInfo);*/
 
+/* Request 3: Find out how many universities have the string "Uni" included in their name. Create a new array called unisWithUni that contains them all. This will be an array of objects. Log the result. */
+
+var unisWithUni = [];
+unisWithUni.push(graduates[graduates.length -1].university, graduates[graduates.length - 2].university);
 console.log(unisWithUni);
 
 // ==== ADVANCED Array Methods ====
@@ -124,7 +126,7 @@ The zoos want to display both the scientific name and the animal name in front o
 
 */
 
-const displayNames = [];
+var displayNames = [];
 zooAnimals.forEach(function(displayNames) {
     var index = 0, totalIndex = 10;
             if(zooAnimals[index] < zooAnimals[totalIndex]) {  
@@ -133,7 +135,7 @@ zooAnimals.forEach(function(displayNames) {
                 return element;
             }
             else{
-                zooAnimals[index] = zooAnimals[index + 1];
+                index++;
             }
     }
 );
@@ -145,15 +147,15 @@ The zoos need a list of all their animal's names (animal_name only) converted to
 
 */
 
-const lowCaseAnimalNames = [];
+var lowCaseAnimalNames = [];
 zooAnimals.map(function(lowCaseAnimalNames){
-    var maxIndex = 10, index = 0, element;
-        if(zooAnimals[index] < zooAnimals[maxIndex]){
-        element = lowCaseAnimalNames.push(zooAnimals.animal_name);
+    for(var index = 0; index < zooAnimals.length; index++)
+        if(zooAnimals[index] < zooAnimals[zooAnimals.length]){
+        lowCaseAnimalNames.push(zooAnimals.animal_name);
         lowCaseAnimalNames.toLowerCase(zooAnimals.animal_name); 
     }
         else{
-        zooAnimals[index] = zooAnimals[index + 1];
+            index++;
     }
   });
 console.log(lowCaseAnimalNames);
@@ -163,20 +165,21 @@ console.log(lowCaseAnimalNames);
 The zoos are concerned about animals with a lower population count. Using filter, create a new array of objects called lowPopulationAnimals which contains only the animals with a population less than 5.
 
 */
-const lowPopulationAnimals = [];
+var lowPopulationAnimals = [];
 zooAnimals.filter(function(lowPopulationAnimals){
     function checkPopulation(zooAnimals){
-        var lowPopulation = 5, index = 0, maxIndex = 10, element;
-          if(zooAnimals[index] < zooAnimals[maxIndex]){
+        var lowPopulation = 5;
+        for(var index = 0; index < zooAnimals.length; index++){
+          if(zooAnimals[index] < zooAnimals[zooAnimals.length]){
             if(lowPopulation > zooAnimals.population) {
-            element = lowPopulationAnimals.push(zooAnimals.population);
-            return lowPopulationAnimals.push(zooAnimals.population);
+            lowPopulationAnimals.push(zooAnimals[index].population);
+            return lowPopulationAnimals;
           }
         }
           else{
-            zooAnimals[index] = index+ 1;
+            index++;
           }
-        }
+        }}
       })
 console.log(lowPopulationAnimals);
 
@@ -184,24 +187,28 @@ console.log(lowPopulationAnimals);
 The zoos need to know their total animal population across the United States. Find the total population from all the zoos using the .reduce() method. Remember the reduce method takes two arguments: a callback (which itself takes two args), and an initial value for the count.
 */
 
-const populationTotal = 0;
-var animalPopulation = zooAnimals.reduce(function(callback, initialvalue) 
+var populationTotal = 0;
+var animalPopulation = zooAnimals.reduce(function(callback, currentvalue, initialvalue)
 {
-    initialvalue = 0, index = 0, maxIndex = 10;
-    if(zooAnimals[index] < zooAnimals[maxIndex]) {
-    if(populationTotal < zooAnimals.population){
-        initialvalue = callback(populationTotal , zooAnimals.population);
-        populationTotal += zooAnimals.population;
-        initialvalue = populationTotal;
-        return initialvalue;
+    for(initialvalue = 0; initialvalue < zooAnimals.length; index++){
+      if(currentvalue === zooAnimals[initialvalue].population){
+        if(currentvalue <= zooAnimals[zooAnimals.length].population){
+          populationTotal += currentvalue;
+          initialvalue++;
         }
-    else{
-        zooAnimals[index] = index + 1;
+        else{
+          currentvalue += zooAnimals[initialvalue].population;
+          initialvalue++;
+        }
+      }
+      else{
+        currentvalue += zooAnimals[initialvalue].population;
+      }
     }
-  }
-  });
-console.log(populationTotal);
+});
 
+console.log(populationTotal);
+console.log(callback(populationTotal, 10));
 /*
 Stretch: If you haven't already, convert your array method callbacks into arrow functions.
 */

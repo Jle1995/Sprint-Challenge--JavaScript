@@ -7,16 +7,10 @@
   * The consume function should return the invocation of cb, passing a and b into cb as arguments
 */
 
-function HigherOrderFunction(Num1, Num2) {
-    return (Num1 * Num2) / (Num1 - Num2);
-}
-
 function consume(a, b, cb) {
-  a = 15, b = 10;
-  cb(a,b);
+  return cb(a,b);
 }
 
-consume(15,10,HigherOrderFunction);
 
 /* Step 2: Create several functions to callback with consume();
   * Create a function named add that returns the sum of two numbers
@@ -25,17 +19,14 @@ consume(15,10,HigherOrderFunction);
 */
 
 function add(Num1, Num2) {
-    var Num1, Num2;
     return Num1 + Num2;
 }
 
 function multiply(Num1, Num2) {
-    var Num1, Num2;
     return Num1 * Num2;
 }
 
-function greeting() {
-  var firstName, lastName;
+function greeting(firstName, lastName) {
   return `Hello ${firstName} ${lastName}, nice to meet you!`;
 }
 
